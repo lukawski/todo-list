@@ -9,7 +9,9 @@ export default class TasksList {
     fragment.appendChild(ul)
     tasks.forEach(item => {
       const li = document.createElement('li')
+      const btn = document.createElement('button')
       li.innerHTML = item.name
+      li.appendChild(btn)
       fragment.childNodes[0].appendChild(li)
     })
     this.root.appendChild(fragment)
