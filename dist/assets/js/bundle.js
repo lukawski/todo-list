@@ -103,11 +103,22 @@ if(false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Task__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TasksList__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_css__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__index_css__);
 
 
-console.log('!')
+
+
+const tasks = []
+for (let i = 0; i < 10; i++) {
+  const singleTask = new __WEBPACK_IMPORTED_MODULE_0__Task__["a" /* default */](`Task ${i}`, 'description')
+  tasks.push(singleTask)
+}
+
+const tL = new __WEBPACK_IMPORTED_MODULE_1__TasksList__["a" /* default */]('root')
+tL.render(tasks)
 
 
 /***/ }),
@@ -119,7 +130,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background: blue;\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -612,6 +623,54 @@ module.exports = function (css) {
 	// send back the fixed css
 	return fixedCss;
 };
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Task {
+  constructor (name, description) {
+    this.name = name
+    this.description = description
+  }
+
+  get taskInfo () {
+    return {
+      name: this.name,
+      description: this.description
+    }
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Task;
+
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class TasksList {
+  constructor (root) {
+    this.root = document.getElementById(root)
+  }
+
+  render (tasks) {
+    let fragment = document.createDocumentFragment()
+    let ul = document.createElement('ul')
+    fragment.appendChild(ul)
+    tasks.forEach(item => {
+      const li = document.createElement('li')
+      li.innerHTML = item.name
+      fragment.childNodes[0].appendChild(li)
+    })
+    this.root.appendChild(fragment)
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = TasksList;
+
 
 
 /***/ })
