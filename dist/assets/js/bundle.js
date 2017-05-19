@@ -110,9 +110,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const root = document.getElementById('root')
-const singleTask = new __WEBPACK_IMPORTED_MODULE_0__Task__["a" /* default */]('task1', 'description')
-console.log(singleTask.taskInfo)
-console.log(root)
+const tasks = []
+for (let i = 0; i < 10; i++) {
+  const singleTask = new __WEBPACK_IMPORTED_MODULE_0__Task__["a" /* default */](`task${i}`, 'description')
+  tasks.push(singleTask)
+}
+
+let fragment = document.createDocumentFragment()
+let ul = document.createElement('ul')
+fragment.appendChild(ul)
+console.log(fragment.childNodes[0])
+for (let i = 0; i < tasks.length; i++) {
+  const li = document.createElement('li')
+  li.innerHTML = tasks[i].name
+  fragment.childNodes[0].appendChild(li)
+}
+root.appendChild(fragment)
 
 
 /***/ }),
