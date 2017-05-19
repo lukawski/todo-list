@@ -14,9 +14,8 @@ body {
 }
 
 .app {
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
-  background: whitesmoke;
   padding: 10px;
 }
 
@@ -24,8 +23,23 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.75);
 }
 
 li {
-  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  transition: all .3s;
+}
+
+li:nth-of-type(even) {
+  border-top: none;
+  border-bottom: none;
+}
+
+li:last-of-type {
+  border: 1px solid #d9d9d9;
+  border-top: none;
 }
