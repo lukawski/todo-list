@@ -1,4 +1,16 @@
 export default class TasksList {
+  constructor () {
+    this.list = []
+  }
+
+  add (task) {
+    this.list.push(task)
+  }
+
+  get tasksList () {
+    return this.list
+  }
+
   static render (tasks, root) {
     let fragment = document.createDocumentFragment()
     let ul = document.createElement('ul')
@@ -8,6 +20,8 @@ export default class TasksList {
       const btn = document.createElement('button')
       li.id = item.id
       li.innerHTML = item.name
+      btn.innerText = 'Start'
+      btn.setAttribute('data-action', 'start')
       li.appendChild(btn)
       fragment.childNodes[0].appendChild(li)
     })

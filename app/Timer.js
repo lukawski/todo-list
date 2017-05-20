@@ -6,4 +6,8 @@ export default class Timer {
   static stop () {
     clearInterval(this.interval)
   }
+
+  static isActive () {
+    return this.interval
+  }
 }
