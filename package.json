@@ -19,10 +19,15 @@
   },
   "homepage": "https://github.com/lukawski/todo-list#readme",
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
     "browser-sync": "^2.18.11",
     "browser-sync-webpack-plugin": "^1.1.4",
     "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "style-loader": "^0.17.0",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "webpack": "^2.5.1"
   }
 }
