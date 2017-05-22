@@ -7,6 +7,11 @@ export default class TasksList {
     this.list.push(task)
   }
 
+  find (id) {
+    let [item] = this.list.filter(item => item.id === id)
+    return item
+  }
+
   get tasksList () {
     return this.list
   }

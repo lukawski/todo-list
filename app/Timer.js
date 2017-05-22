@@ -1,10 +1,10 @@
 export default class Timer {
-  static start () {
+  static start (interval) {
     this.interval = setInterval(() => console.log('!'), 1000)
   }
 
-  static stop () {
-    clearInterval(this.interval)
+  static stop (interval) {
+    clearInterval(interval)
   }
 
   static isActive () {
