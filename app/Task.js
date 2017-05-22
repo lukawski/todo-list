@@ -1,13 +1,10 @@
 export default class Task {
-  constructor (id, name) {
-    this.id = id
-    this.name = name
-  }
-
-  get taskInfo () {
+  static create (id, name, status, duration) {
     return {
-      id: this.id,
-      name: this.name
+      id,
+      name,
+      status,
+      duration
     }
   }
 }
