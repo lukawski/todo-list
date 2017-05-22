@@ -1,5 +1,6 @@
 import Task from './Task'
 import TasksList from './TasksList'
+import Timer from './Timer'
 import './index.css'
 
 const tasks = new TasksList()
@@ -13,21 +14,23 @@ const [listEl] = document.getElementsByTagName('ul')
 let interval
 listEl.addEventListener('click', (e) => {
   if (e.target.nodeName !== 'BUTTON') return false
-
-  const taskID = Number(e.target.parentNode.id)
-  const task = tasks.find(taskID)
   const action = e.target.getAttribute('data-action')
   switch (action) {
     case 'start':
       setBtn('data-action', 'stop', e.target)
-      interval = setInterval(() => task.duration++, 1000)
+      const taskID = Number(e.target.parentNode.id)
+      const task = tasks.find(taskID)
+      const timerContainer = e.target.parentNode.lastElementChild
+      interval = setInterval(() => {
+        task.duration++
+        timerContainer.innerText = Timer.calculateTime(task.duration)
+      }, 1000)
       break
     case 'stop':
       clearInterval(interval)
       setBtn('data-action', 'start', e.target)
       break
   }
-  console.log(task)
 })
 
 function setBtn (attribute, value, element) {
