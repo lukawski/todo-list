@@ -1,19 +1,23 @@
 const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './app/index.js',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist/assets/js'),
+    filename: 'js/bundle.js',
+    path: path.resolve(__dirname, 'dist/assets'),
     publicPath: './dist/assets/'
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
       {
         test: /\.js$/,
@@ -33,6 +37,7 @@ module.exports = {
       port: 3000,
       server: { baseDir: ['dist'] }
     }),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin(),
+    new ExtractTextPlugin('css/styles.css')
   ]
 }
