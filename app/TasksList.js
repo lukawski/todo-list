@@ -18,20 +18,30 @@ export default class TasksList {
 
   static render (tasks, root) {
     let fragment = document.createDocumentFragment()
-    let ul = document.createElement('ul')
-    fragment.appendChild(ul)
     tasks.forEach(item => {
-      const li = document.createElement('li')
-      const btn = document.createElement('button')
-      const timer = document.createElement('span')
-      li.id = item.id
-      li.innerHTML = item.name
-      btn.innerText = 'Start'
-      btn.setAttribute('data-action', 'start')
-      timer.classList.add('timer')
-      li.appendChild(btn)
-      li.appendChild(timer)
-      fragment.childNodes[0].appendChild(li)
+      const container = document.createElement('div')
+      const title = document.createElement('p')
+      const timerContainer = document.createElement('p')
+      const timerBtn = document.createElement('button')
+      console.log(container)
+
+      container.id = item.id
+      container.classList.add('task')
+
+      title.textContent = item.name
+      title.classList.add('task-title')
+
+      timerContainer.textContent = '00:00:00'
+      timerContainer.classList.add('timer-time')
+
+      timerBtn.textContent = 'Start'
+      timerBtn.setAttribute('data-action', 'start')
+      timerBtn.classList.add('timer-btn')
+
+      container.appendChild(title)
+      container.appendChild(timerContainer)
+      container.appendChild(timerBtn)
+      fragment.appendChild(container)
     })
     document.getElementById(root).appendChild(fragment)
   }
