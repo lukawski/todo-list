@@ -23,7 +23,6 @@ export default class TasksList {
       const title = document.createElement('p')
       const timerContainer = document.createElement('p')
       const timerBtn = document.createElement('button')
-      console.log(container)
 
       container.id = item.id
       container.classList.add('task')
@@ -43,6 +42,6 @@ export default class TasksList {
       container.appendChild(timerBtn)
       fragment.appendChild(container)
     })
-    document.getElementById(root).appendChild(fragment)
+    root.appendChild(fragment)
   }
 }

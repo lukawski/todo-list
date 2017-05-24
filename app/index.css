@@ -12,18 +12,39 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  background: whitesmoke;
 }
 
-.app {
-  width: 70%;
-  padding: 10px;
+.flex {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
+.app {
+  padding: 10px;
+}
+
+.tasks {
+  width: 90%;
+}
+
+.filters {
+  width: 10%;
+}
+
+.filters-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.filters-btn {
+  width: 60%;
+  margin: 5px;
+}
+
 .task {
-  width: 25%;
+  width: 20%;
   margin: 10px;
   background: #BDBDBD;
   border-radius: 5px;
