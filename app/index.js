@@ -10,10 +10,10 @@ for (let i = 0; i < 10; i++) {
 }
 TasksList.render(tasks.tasksList, 'root')
 
-const [listEl] = document.getElementsByTagName('ul')
+const root = document.getElementById('root')
 let interval
 let timerActive = false
-listEl.addEventListener('click', (e) => {
+root.addEventListener('click', (e) => {
   if ((e.target.nodeName !== 'BUTTON' || timerActive) && e.target.getAttribute('data-action') !== 'stop') return false
   const action = e.target.getAttribute('data-action')
   switch (action) {
@@ -22,7 +22,7 @@ listEl.addEventListener('click', (e) => {
       setBtn('data-action', 'stop', e.target)
       const taskID = Number(e.target.parentNode.id)
       const task = tasks.find(taskID)
-      const timerContainer = e.target.parentNode.lastElementChild
+      const timerContainer = e.target.previousSibling
       interval = setInterval(() => {
         ++task.duration
         timerContainer.innerText = Timer.calculateTime(task.duration)
