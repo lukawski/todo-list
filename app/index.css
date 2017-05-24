@@ -41,6 +41,7 @@ body {
   transition: all .3s;
   color: #404040;
   background: #FFCDD2;
+  text-transform: uppercase;
 }
 
 .timer-btn:hover {
