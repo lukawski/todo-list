@@ -3,14 +3,15 @@ import TasksList from './TasksList'
 import Timer from './Timer'
 import './index.css'
 
+const root = document.getElementById('root')
+const tasksContainer = document.getElementById('tasks')
 const tasks = new TasksList()
 for (let i = 0; i < 10; i++) {
   const singleTask = Task.create(i, `Task ${i}`, 'active', 0)
   tasks.add(singleTask)
 }
-TasksList.render(tasks.tasksList, 'root')
+TasksList.render(tasks.tasksList, tasksContainer)
 
-const root = document.getElementById('root')
 let interval
 let timerActive = false
 root.addEventListener('click', (e) => {
