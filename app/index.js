@@ -6,6 +6,7 @@ import './index.css'
 const root = document.getElementById('root')
 const filtersList = document.getElementById('filters-list')
 const tasks = new TasksList()
+const checkbox = document.getElementsByTagName('input')
 let tasksContainer = document.getElementById('tasks')
 
 for (let i = 0; i < 10; i++) {
@@ -42,6 +43,15 @@ tasksContainer.addEventListener('click', e => {
       break
   }
 })
+
+for (let i = 0; i < checkbox.length; i++) {
+  checkbox[i].addEventListener('click', e => {
+    const taskID = Number(e.target.parentNode.id)
+    const task = tasks.find(taskID)
+    task.active = !task.active
+    console.log(task)
+  })
+}
 
 filtersList.addEventListener('click', e => {
   if (e.target.nodeName !== 'BUTTON') return false

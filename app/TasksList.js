@@ -24,6 +24,8 @@ export default class TasksList {
       const title = document.createElement('p')
       const timerContainer = document.createElement('p')
       const timerBtn = document.createElement('button')
+      const checkbox = document.createElement('input')
+      const checkboxText = document.createTextNode('Completed')
 
       container.id = item.id
       container.classList.add('task')
@@ -39,9 +41,13 @@ export default class TasksList {
       timerBtn.setAttribute('data-action', 'start')
       timerBtn.classList.add('timer-btn')
 
+      checkbox.type = 'checkbox'
+
       container.appendChild(title)
       container.appendChild(timerContainer)
       container.appendChild(timerBtn)
+      container.appendChild(checkbox)
+      container.appendChild(checkboxText)
       fragment.appendChild(container)
     })
     root.appendChild(fragment)
@@ -60,6 +66,8 @@ export default class TasksList {
       const title = document.createElement('p')
       const timerContainer = document.createElement('p')
       const timerBtn = document.createElement('button')
+      const checkbox = document.createElement('input')
+      const checkboxText = document.createTextNode('Completed')
 
       container.id = item.id
       container.classList.add('task')
@@ -75,9 +83,13 @@ export default class TasksList {
       timerBtn.setAttribute('data-action', 'start')
       timerBtn.classList.add('timer-btn')
 
+      checkbox.type = 'checkbox'
+
       container.appendChild(title)
       container.appendChild(timerContainer)
       container.appendChild(timerBtn)
+      container.appendChild(checkbox)
+      container.appendChild(checkboxText)
       tasksContainer.appendChild(container)
     })
     fragment.appendChild(tasksContainer)

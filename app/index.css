@@ -49,6 +49,7 @@ body {
   background: #BDBDBD;
   border-radius: 5px;
   padding: 10px 10px 10px 10px;
+  transition: all .3s;
 }
 
 .active {
