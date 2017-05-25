@@ -3,7 +3,6 @@ import TasksList from './TasksList'
 import Timer from './Timer'
 import './index.css'
 
-const root = document.getElementById('root')
 const filtersList = document.getElementById('filters-list')
 const tasks = new TasksList()
 let tasksContainer = document.getElementById('tasks')
@@ -55,7 +54,6 @@ filtersList.addEventListener('click', e => {
   const btnBool = Boolean(Number(e.target.getAttribute('data-bool')))
   const filteredTasks = tasks.tasksList.filter(item => item.active === btnBool)
   const dataContainer = tasksContainer.childNodes[0]
-  console.log(tasksContainer)
   TasksList.render(filteredTasks, tasksContainer, dataContainer)
 })
 
