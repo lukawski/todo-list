@@ -8,8 +8,7 @@ const tasks = new TasksList()
 let tasksContainer = document.getElementById('tasks')
 
 for (let i = 0; i < 10; i++) {
-  const singleTask = Task.create(i, `Task ${i}`, true, 0)
-  tasks.add(singleTask)
+  tasks.add(Task.create(i, `Task ${i}`, true, 0))
 }
 TasksList.render(tasks.tasksList, tasksContainer)
 
@@ -51,9 +50,14 @@ tasksContainer.addEventListener('click', e => {
 filtersList.addEventListener('click', e => {
   if (e.target.nodeName !== 'BUTTON') return false
 
+  const dataContainer = tasksContainer.childNodes[0]
+
+  if (e.target.getAttribute('data-bool') === 'all') {
+    TasksList.render(tasks.tasksList, tasksContainer, dataContainer)
+  }
+
   const btnBool = Boolean(Number(e.target.getAttribute('data-bool')))
   const filteredTasks = tasks.tasksList.filter(item => item.active === btnBool)
-  const dataContainer = tasksContainer.childNodes[0]
   TasksList.render(filteredTasks, tasksContainer, dataContainer)
 })
 
