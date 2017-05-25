@@ -1,9 +1,9 @@
 export default class Task {
-  static create (id, name, status, duration) {
+  static create (id, name, active, duration) {
     return {
       id,
       name,
-      status,
+      active,
       duration
     }
   }
