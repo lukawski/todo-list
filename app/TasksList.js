@@ -75,9 +75,11 @@ export default class TasksList {
     } else {
       el = document.createElement(type)
       const attributes = Object.keys(attrs)
-      for (const key of attributes) {
+      for (let key of attributes) {
         if (typeof attrs[key] === 'boolean' && attrs[key]) continue
-        el.setAttribute(key, attrs[key])
+
+        const attribute = /([A-Z])\w{0}/g.test(key) ? this.transformAttribute(key) : key
+        el.setAttribute(attribute, attrs[key])
       }
       if (arguments[2]) {
         for (let i = 2; i < arguments.length; i++) {
@@ -86,5 +88,17 @@ export default class TasksList {
       }
     }
     return el
+  }
+
+  static transformAttribute (attribute) {
+    const upperLetters = attribute.match(/([A-Z])\w{0}/g)
+    if (!upperLetters) return attribute
+    let newKey
+    upperLetters.forEach(letter => {
+      console.log(attribute.indexOf(letter))
+      newKey = `${attribute.slice(0, [attribute.indexOf(letter)])}-${attribute.slice(attribute.indexOf(letter))}`.replace(letter, letter.toLocaleLowerCase())
+      console.log(newKey)
+    })
+    return newKey
   }
 }
