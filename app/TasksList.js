@@ -18,88 +18,73 @@ export default class TasksList {
     return this.list
   }
 
-  static render (tasks, root) {
+  static render (tasks, root, old) {
     const fragment = document.createDocumentFragment()
-    const dataContainer = document.createElement('div')
-    dataContainer.classList.add('flex')
+    const dataContainer = this.createElement('div', {class: 'flex'})
 
     tasks.forEach(item => {
-      const container = document.createElement('div')
-      const title = document.createElement('p')
-      const timerContainer = document.createElement('p')
-      const timerBtn = document.createElement('button')
-      const checkbox = document.createElement('input')
-      const checkboxText = document.createTextNode('Completed')
+      const dom = this.createElement('div',
+        {
+          id: item.id,
+          class: `task ${item.active ? 'active' : ''}`
+        },
+        this.createElement('p',
+          {
+            class: 'task-title'
+          },
+            this.createElement('text', {}, item.name)
+        ),
+        this.createElement('p',
+          {
+            class: 'timer-time'
+          },
+          this.createElement('text', {}, Timer.calculateTime(item.duration))
+        ),
+        this.createElement('button',
+          {
+            dataAction: 'start',
+            class: 'timer-btn'
+          },
+          this.createElement('text', {}, 'Start')
+        ),
+        this.createElement('input',
+          {
+            type: 'checkbox',
+            checked: item.active
+          }
+        ),
+        this.createElement('text', {}, 'Completed')
+      )
 
-      container.id = item.id
-      container.classList.add('task')
-      if (item.active) container.classList.add('active')
-
-      title.textContent = item.name
-      title.classList.add('task-title')
-
-      timerContainer.textContent = Timer.calculateTime(item.duration)
-      timerContainer.classList.add('timer-time')
-
-      timerBtn.textContent = 'Start'
-      timerBtn.setAttribute('data-action', 'start')
-      timerBtn.classList.add('timer-btn')
-
-      checkbox.type = 'checkbox'
-
-      container.appendChild(title)
-      container.appendChild(timerContainer)
-      container.appendChild(timerBtn)
-      container.appendChild(checkbox)
-      container.appendChild(checkboxText)
-      dataContainer.appendChild(container)
+      dataContainer.appendChild(dom)
     })
+
     fragment.appendChild(dataContainer)
-    root.appendChild(fragment)
-  }
-
-  static update (tasks, root, old) {
-    const fragment = document.createDocumentFragment()
-    const dataContainer = document.createElement('div')
-    dataContainer.classList.add('flex')
-
-    tasks.forEach(item => {
-      const container = document.createElement('div')
-      const title = document.createElement('p')
-      const timerContainer = document.createElement('p')
-      const timerBtn = document.createElement('button')
-      const checkbox = document.createElement('input')
-      const checkboxText = document.createTextNode('Completed')
-
-      container.id = item.id
-      container.classList.add('task')
-      if (item.active) container.classList.add('active')
-
-      title.textContent = item.name
-      title.classList.add('task-title')
-
-      timerContainer.textContent = Timer.calculateTime(item.duration)
-      timerContainer.classList.add('timer-time')
-
-      timerBtn.textContent = 'Start'
-      timerBtn.setAttribute('data-action', 'start')
-      timerBtn.classList.add('timer-btn')
-
-      checkbox.type = 'checkbox'
-
-      container.appendChild(title)
-      container.appendChild(timerContainer)
-      container.appendChild(timerBtn)
-      container.appendChild(checkbox)
-      container.appendChild(checkboxText)
-      dataContainer.appendChild(container)
-    })
-    fragment.appendChild(dataContainer)
-    root.replaceChild(fragment, old)
+    old ? root.replaceChild(fragment, old) : root.appendChild(fragment)
   }
 
   static updateElement (element, task) {
     task.active ? element.classList.remove('active') : element.classList.add('active')
     task.active = !task.active
+  }
+
+  static createElement (type, attrs) {
+    let el
+    if (type === 'text') {
+      el = document.createTextNode(arguments[2])
+    } else {
+      el = document.createElement(type)
+      const attributes = Object.keys(attrs)
+      for (const key of attributes) {
+        if (typeof attrs[key] === 'boolean' && attrs[key]) continue
+        el.setAttribute(key, attrs[key])
+      }
+      if (arguments[2]) {
+        for (let i = 2; i < arguments.length; i++) {
+          el.appendChild(arguments[i])
+        }
+      }
+    }
+    return el
   }
 }

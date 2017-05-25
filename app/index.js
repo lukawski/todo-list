@@ -56,7 +56,7 @@ filtersList.addEventListener('click', e => {
   const filteredTasks = tasks.tasksList.filter(item => item.active === btnBool)
   const dataContainer = tasksContainer.childNodes[0]
   console.log(tasksContainer)
-  TasksList.update(filteredTasks, tasksContainer, dataContainer)
+  TasksList.render(filteredTasks, tasksContainer, dataContainer)
 })
 
 function setBtn (attribute, value, element) {
