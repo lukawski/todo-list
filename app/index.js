@@ -45,7 +45,7 @@ tasksContainer.addEventListener('click', e => {
   } else if (e.target.nodeName === 'INPUT') {
     const taskID = Number(e.target.parentNode.id)
     const task = tasks.find(taskID)
-    TasksList.update(e.target.parentNode, task)
+    TasksList.updateElement(e.target.parentNode, task)
   } else return false
 })
 
@@ -54,9 +54,9 @@ filtersList.addEventListener('click', e => {
 
   const btnBool = Boolean(Number(e.target.getAttribute('data-bool')))
   const filteredTasks = tasks.tasksList.filter(item => item.active === btnBool)
-
-  tasksContainer = document.getElementById('tasks')
-  TasksList.update(filteredTasks, root, tasksContainer)
+  const dataContainer = tasksContainer.childNodes[0]
+  console.log(tasksContainer)
+  TasksList.update(filteredTasks, tasksContainer, dataContainer)
 })
 
 function setBtn (attribute, value, element) {

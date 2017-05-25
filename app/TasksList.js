@@ -1,3 +1,5 @@
+import Timer from './Timer'
+
 export default class TasksList {
   constructor () {
     this.list = []
@@ -17,7 +19,9 @@ export default class TasksList {
   }
 
   static render (tasks, root) {
-    let fragment = document.createDocumentFragment()
+    const fragment = document.createDocumentFragment()
+    const dataContainer = document.createElement('div')
+    dataContainer.classList.add('flex')
 
     tasks.forEach(item => {
       const container = document.createElement('div')
@@ -34,7 +38,7 @@ export default class TasksList {
       title.textContent = item.name
       title.classList.add('task-title')
 
-      timerContainer.textContent = '00:00:00'
+      timerContainer.textContent = Timer.calculateTime(item.duration)
       timerContainer.classList.add('timer-time')
 
       timerBtn.textContent = 'Start'
@@ -48,12 +52,54 @@ export default class TasksList {
       container.appendChild(timerBtn)
       container.appendChild(checkbox)
       container.appendChild(checkboxText)
-      fragment.appendChild(container)
+      dataContainer.appendChild(container)
     })
+    fragment.appendChild(dataContainer)
     root.appendChild(fragment)
   }
 
-  static update (element, task) {
+  static update (tasks, root, old) {
+    // old.childNodes
+    const fragment = document.createDocumentFragment()
+    const dataContainer = document.createElement('div')
+    dataContainer.classList.add('flex')
+
+    tasks.forEach(item => {
+      const container = document.createElement('div')
+      const title = document.createElement('p')
+      const timerContainer = document.createElement('p')
+      const timerBtn = document.createElement('button')
+      const checkbox = document.createElement('input')
+      const checkboxText = document.createTextNode('Completed')
+
+      container.id = item.id
+      container.classList.add('task')
+      if (item.active) container.classList.add('active')
+
+      title.textContent = item.name
+      title.classList.add('task-title')
+
+      timerContainer.textContent = Timer.calculateTime(item.duration)
+      timerContainer.classList.add('timer-time')
+
+      timerBtn.textContent = 'Start'
+      timerBtn.setAttribute('data-action', 'start')
+      timerBtn.classList.add('timer-btn')
+
+      checkbox.type = 'checkbox'
+
+      container.appendChild(title)
+      container.appendChild(timerContainer)
+      container.appendChild(timerBtn)
+      container.appendChild(checkbox)
+      container.appendChild(checkboxText)
+      dataContainer.appendChild(container)
+    })
+    fragment.appendChild(dataContainer)
+    root.replaceChild(fragment, old)
+  }
+
+  static updateElement (element, task) {
     task.active ? element.classList.remove('active') : element.classList.add('active')
     task.active = !task.active
   }
