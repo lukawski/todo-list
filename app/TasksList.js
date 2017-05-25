@@ -27,6 +27,7 @@ export default class TasksList {
 
       container.id = item.id
       container.classList.add('task')
+      if (item.active) container.classList.add('active')
 
       title.textContent = item.name
       title.classList.add('task-title')
@@ -62,6 +63,7 @@ export default class TasksList {
 
       container.id = item.id
       container.classList.add('task')
+      if (item.active) container.classList.add('active')
 
       title.textContent = item.name
       title.classList.add('task-title')

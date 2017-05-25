@@ -51,6 +51,10 @@ body {
   padding: 10px 10px 10px 10px;
 }
 
+.active {
+  background: #66BB6A;
+}
+
 .task-title {
   font-size: 1.2em;
   margin: 0;
