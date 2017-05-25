@@ -59,7 +59,6 @@ export default class TasksList {
   }
 
   static update (tasks, root, old) {
-    // old.childNodes
     const fragment = document.createDocumentFragment()
     const dataContainer = document.createElement('div')
     dataContainer.classList.add('flex')
