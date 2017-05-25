@@ -39,8 +39,8 @@ body {
 }
 
 .filters-btn {
-  width: 60%;
   margin: 5px;
+  width: 60%;
 }
 
 .task {
@@ -49,6 +49,11 @@ body {
   background: #BDBDBD;
   border-radius: 5px;
   padding: 10px 10px 10px 10px;
+  transition: all .3s;
+}
+
+.active {
+  background: #66BB6A;
 }
 
 .task-title {
